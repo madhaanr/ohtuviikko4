@@ -21,9 +21,9 @@ public class Tester {
         System.out.println( driver.getPageSource() );
         
         element = driver.findElement(By.name("username"));
-        element.sendKeys("pekka");
+        element.sendKeys("pek");
         element = driver.findElement(By.name("password"));
-        element.sendKeys("a");
+        element.sendKeys("akkep");
         element = driver.findElement(By.name("login"));
         element.submit();
         
