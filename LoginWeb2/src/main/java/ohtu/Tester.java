@@ -20,17 +20,37 @@ public class Tester {
         System.out.println("==");       
         System.out.println( driver.getPageSource() );
         
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("ralliauto3");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("ralliauto3");
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys("ralliauto3");
+        element = driver.findElement(By.name("add"));
+        element.submit();
         
-       
+        System.out.println("==");
+        System.out.println( driver.getPageSource() );
         
+        driver.get("http://localhost:8080");
+        element = driver.findElement(By.linkText("login"));
+        element.click();
         element = driver.findElement(By.name("username"));
         element.sendKeys("ralliauto");
         element = driver.findElement(By.name("password"));
         element.sendKeys("ralliauto1");
-        element = driver.findElement(By.name("passwordConfirmation"));
-        element.sendKeys("ralliauto1");
-        element = driver.findElement(By.name("add"));
+        element = driver.findElement(By.name("login"));
         element.submit();
+        
+              
+//        element = driver.findElement(By.name("username"));
+//        element.sendKeys("ralliauto");
+//        element = driver.findElement(By.name("password"));
+//        element.sendKeys("ralliauto1");
+//        element = driver.findElement(By.name("passwordConfirmation"));
+//        element.sendKeys("ralliauto1");
+//        element = driver.findElement(By.name("add"));
+//        element.submit();
         
 //        element = driver.findElement(By.name("username"));
 //        element.sendKeys("pek");
