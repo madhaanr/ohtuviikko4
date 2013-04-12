@@ -14,19 +14,38 @@ public class Tester {
         
         System.out.println( driver.getPageSource() );
         
-        WebElement element = driver.findElement(By.linkText("login"));       
+        WebElement element = driver.findElement(By.linkText("register new user"));       
         element.click(); 
         
         System.out.println("==");       
         System.out.println( driver.getPageSource() );
         
+        
+       
+        
         element = driver.findElement(By.name("username"));
-        element.sendKeys("pek");
+        element.sendKeys("ralliauto");
         element = driver.findElement(By.name("password"));
-        element.sendKeys("akkep");
-        element = driver.findElement(By.name("login"));
+        element.sendKeys("ralliauto1");
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys("ralliauto1");
+        element = driver.findElement(By.name("add"));
         element.submit();
         
+//        element = driver.findElement(By.name("username"));
+//        element.sendKeys("pek");
+//        element = driver.findElement(By.name("password"));
+//        element.sendKeys("akkep");
+//        element = driver.findElement(By.name("login"));
+//        element.submit();
+        
+//        element = driver.findElement(By.name("username"));
+//        element.sendKeys("pekka");
+//        element = driver.findElement(By.name("password"));
+//        element.sendKeys("a");
+//        element = driver.findElement(By.name("login"));
+//        element.submit();
+                
         System.out.println("==");
         System.out.println( driver.getPageSource() );
         
