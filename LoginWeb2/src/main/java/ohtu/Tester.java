@@ -11,22 +11,25 @@ public class Tester {
         WebDriver driver = new HtmlUnitDriver();
 
         driver.get("http://localhost:8080");
+        
         System.out.println( driver.getPageSource() );
+        
         WebElement element = driver.findElement(By.linkText("login"));       
         element.click(); 
         
-        System.out.println("==");
-        
+        System.out.println("==");       
         System.out.println( driver.getPageSource() );
+        
         element = driver.findElement(By.name("username"));
         element.sendKeys("pekka");
         element = driver.findElement(By.name("password"));
-        element.sendKeys("akkep");
+        element.sendKeys("a");
         element = driver.findElement(By.name("login"));
         element.submit();
         
         System.out.println("==");
         System.out.println( driver.getPageSource() );
         
+        //epäonnistunut kirjautuminen: oikea käyttäjätunnus, väärä salasana
     }
 }
