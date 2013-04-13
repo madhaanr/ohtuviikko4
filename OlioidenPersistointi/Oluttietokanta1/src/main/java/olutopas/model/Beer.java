@@ -3,6 +3,7 @@ package olutopas.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Beer {
@@ -15,6 +16,17 @@ public class Beer {
     @ManyToOne
     private Brewery brewery;
 
+//    @OneToMany
+//    private Rating rating;
+//
+//    public Rating getRating() {
+//        return rating;
+//    }
+//
+//    public void setRating(Rating rating) {
+//        this.rating = rating;
+//    }
+    
     public Beer() {
     }
     

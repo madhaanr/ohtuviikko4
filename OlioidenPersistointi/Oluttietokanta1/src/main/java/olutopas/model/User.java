@@ -2,6 +2,7 @@ package olutopas.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /* @author mhaanran */
 @Entity
@@ -10,6 +11,17 @@ public class User {
     private Integer id;
     
     private String kayttajatunnus;
+   
+    @OneToMany
+    private Rating rating;
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
 
     public User() {     
     }
