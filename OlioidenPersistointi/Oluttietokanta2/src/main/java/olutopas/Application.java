@@ -46,6 +46,8 @@ public class Application {
                 addPub();            
             } else if (command.equals("7")) {
                 addBeerToPub();
+            } else if (command.equals("8")) {
+                showBeersInPub();
             }  else {
                 System.out.println("unknown command");
             }
@@ -65,7 +67,8 @@ public class Application {
         System.out.println("4   list breweries");
         System.out.println("5   delete beer");
         System.out.println("6   add pub");               
-        System.out.println("7   add beer to pub");                      
+        System.out.println("7   add beer to pub");   
+        System.out.println("8   show beers in pub");
         System.out.println("0   quit");
         System.out.println("");
     }
@@ -217,6 +220,9 @@ public class Application {
 
         pub.addBeer(beer);
         server.save(pub);
+    }
+    private void showBeersInPub() {
+        
     }
 
 }
