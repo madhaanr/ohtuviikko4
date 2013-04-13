@@ -6,6 +6,7 @@ import java.util.Scanner;
 import javax.persistence.OptimisticLockException;
 import olutopas.model.Beer;
 import olutopas.model.Brewery;
+import olutopas.model.User;
 
 public class Application {
 
@@ -24,6 +25,7 @@ public class Application {
         System.out.println("Welcome!");
 
         while (true) {
+            login();
             menu();
             System.out.print("> ");
             String command = scanner.nextLine();
@@ -46,6 +48,8 @@ public class Application {
                 addBrewery();
             } else if (command.equals("8")) {
                 deleteBrewery();
+            } else if (command.equals("9")) {
+                listUsers();
             } else {
                 System.out.println("unknown command");
             }
@@ -67,6 +71,7 @@ public class Application {
         System.out.println("6   list beers");
         System.out.println("7   add brewery");
         System.out.println("8   delete brewery");
+        System.out.println("9   list users");
         System.out.println("0   quit");
         System.out.println("");
     }
@@ -207,4 +212,49 @@ public class Application {
         server.delete(breweryToDelete);
         System.out.println("deleted: " + breweryToDelete);
     }
+    private void registerNewUser() {
+        System.out.println("Register a new user");
+        System.out.print("give username: ");
+        String kayttajatunnus = scanner.nextLine();
+
+        User exists = server.find(User.class).where().like("kayttajatunnus", kayttajatunnus).findUnique();
+        if (exists != null) {
+            System.out.println(kayttajatunnus + " exists already");
+            return;
+        }
+        User user = new User();
+        user.setKayttajatunnus(kayttajatunnus);
+        server.save(user);
+        System.out.println("user created!");
+    }
+    @SuppressWarnings("empty-statement")
+    private void login() {
+        String kayttajatunnus;
+        do {
+        System.out.println("Login (give ? to register a new user)");  
+        System.out.print("username: ");
+        kayttajatunnus = scanner.nextLine();
+        if(kayttajatunnus.equals("?")) {
+            registerNewUser();
+        }
+        } while(kayttajatunnus.equals("?"));
+        
+        User exists = server.find(User.class).where().like("kayttajatunnus", kayttajatunnus).findUnique();
+        if(exists != null) {
+            System.out.println("Welcome to Ratebeer! "+kayttajatunnus);
+        }    
+        if(exists == null) {
+            System.out.println("Username doesn't exist");
+            System.exit(0);
+        }
+   }
+        private void listUsers() {
+        List<User> users = server.find(User.class)
+                .orderBy("kayttajatunnus")
+                .findList();
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+  
 }

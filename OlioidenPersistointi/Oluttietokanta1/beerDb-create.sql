@@ -9,6 +9,11 @@ create table brewery (
   name                      varchar(255))
 ;
 
+create table user (
+  id                        integer primary key AUTOINCREMENT,
+  kayttajatunnus            varchar(255))
+;
+
 create index ix_beer_brewery_1 on beer (brewery_id);
 
 
