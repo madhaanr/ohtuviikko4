@@ -50,6 +50,8 @@ public class Application {
                 showBeersInPub();
             } else if (command.equals("9")) {
                 listPubs();
+            } else if (command.equals("d")) {
+                deleteBeerFromPub();
             }  else {
                 System.out.println("unknown command");
             }
@@ -72,6 +74,7 @@ public class Application {
         System.out.println("7   add beer to pub");   
         System.out.println("8   show beers in pub");
         System.out.println("9   list pubs");
+        System.out.println("d   delete beer from pub");
         System.out.println("0   quit");
         System.out.println("");
     }
@@ -240,6 +243,28 @@ public class Application {
                 System.out.println(pub.getBeers().get(i));
             }
         }
+    }
+    private void deleteBeerFromPub() {
+        System.out.print("beer to delete: ");
+        String name = scanner.nextLine();
+        Beer beer = server.find(Beer.class).where().like("name", name).findUnique();
+
+        if (beer == null) {
+            System.out.println("does not exist");
+            return;
+        }
+
+        System.out.print("from pub: ");
+        name = scanner.nextLine();
+        Pub pub = server.find(Pub.class).where().like("name", name).findUnique();
+
+        if (pub == null) {
+            System.out.println("does not exist");
+            return;
+        }
+
+        pub.removeBeer(beer);
+        server.save(pub);
     }
 
 }
