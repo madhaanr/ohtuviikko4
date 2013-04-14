@@ -48,6 +48,8 @@ public class Application {
                 addBeerToPub();
             } else if (command.equals("8")) {
                 showBeersInPub();
+            } else if (command.equals("9")) {
+                listPubs();
             }  else {
                 System.out.println("unknown command");
             }
@@ -69,6 +71,7 @@ public class Application {
         System.out.println("6   add pub");               
         System.out.println("7   add beer to pub");   
         System.out.println("8   show beers in pub");
+        System.out.println("9   list pubs");
         System.out.println("0   quit");
         System.out.println("");
     }
@@ -222,7 +225,21 @@ public class Application {
         server.save(pub);
     }
     private void showBeersInPub() {
-        
+        System.out.println("pub: ");
+        String name = scanner.nextLine();
+        Pub pub = server.find(Pub.class).where().like("name", name).findUnique();
+        for(int i=0;i<pub.getBeers().size();++i){
+            System.out.println(pub.getBeers().get(i));
+        }
+    }
+    private void listPubs() {
+        List<Pub> pubs = server.find(Pub.class).findList();
+        for (Pub pub : pubs) {
+            System.out.println(pub);
+            for(int i=0;i<pub.getBeers().size();++i){
+                System.out.println(pub.getBeers().get(i));
+            }
+        }
     }
 
 }
